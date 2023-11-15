@@ -1,0 +1,26 @@
+def read_and_write_file(filename):
+    try:
+        # Read the content
+        with open(filename, 'r') as file:
+            content = file.read()
+
+        # Open the file again for writing
+        with open(filename, 'w') as file:
+            # Write the modified content
+            file.write(content.upper())
+
+        print(f"File '{filename}' processed successfully.")
+    except FileNotFoundError:
+        print(f"Error: File '{filename}' not found.")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+
+def main():
+    filename = "sample.txt"
+    read_and_write_file(filename)
+
+if __name__ == "__main__":
+    main()
+Error Explanation3-
+Your code looks almost correct, but there is one potential issue. When you read the content of the file and then immediately open the file for writing, you are essentially truncating the file before writing the modified content back. This might lead to unexpected results, especially if an error occurs during the writing process.
+To address this issue, you can read the content, close the file, and then open it again for writing. Additionally, you might want to handle the case where the file doesn't exist when you try to read it.
